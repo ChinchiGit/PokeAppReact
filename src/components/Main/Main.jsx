@@ -1,7 +1,12 @@
 import React from "react";
+import PokemonContainer from "./PokemonContainer/PokemonContainer";
 
 const Main = () => {
-  return <div>Main</div>;
+  return (
+    <>
+      <PokemonContainer/>
+    </>
+  );
 };
 
 export default Main;
