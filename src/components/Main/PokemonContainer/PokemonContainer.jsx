@@ -3,7 +3,7 @@ import ListaPokemon from "./ListaPokemon"
 import Search from "./Search"
 
 const PokemonContainer = () => {
-  const[searchItem, setItemState] = useState("");
+  const[searchItem, setItemState] = useState();
 
   const updateSearchItem=(item)=>{
     setItemState(item);
