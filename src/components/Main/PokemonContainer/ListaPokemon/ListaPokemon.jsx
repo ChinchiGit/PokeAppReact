@@ -3,12 +3,15 @@ import axios from 'axios';
 import { v4 as uuidv4 } from "uuid";
 import Card from "./Card";
 
+
+
 // import ErrorMessage from './ErrorMessage/ErrorMessage';
 
 const ListaPokemon = ({searchItem}) => {
 
   const [searchList, setSearchList] = useState([]);
-  const [fetchStatus, setFetchStatus] = useState()
+  // const [fetchStatus, setFetchStatus] = useState();
+
   
   
   useEffect(() => {
@@ -17,12 +20,27 @@ const ListaPokemon = ({searchItem}) => {
         // Petición HTTP
         const res = await axios.get(`https://pokeapi.co/api/v2/pokemon/${searchItem}`)
         const json = res.data
+
+
+        const res2 = await axios.get(`https://pokeapi.co/api/v2/pokemon-species/${searchItem}`)
+        const json2 = res2.data
+
+
+        const objectPokemon = {
+          name: `${json.name}`,
+          id: `${json.id}`,
+          weight: `${json.weight}`,
+          height: `${json.height}`,
+          foto:`${json["sprites"]["other"]["official-artwork"]["front_default"]}`,
+          color: `${json2.color.name}`,
+          descripcion: `${json2.flavor_text_entries[0]["flavor_text"]}`
+        }
+
         // Guarda en el array de posts el resultado. Procesa los datos
-        setSearchList([...searchList,json]);
-        setFetchStatus(true);
+        setSearchList([objectPokemon, ...searchList]);
+        // setFetchStatus(true);
       }catch(e){
-        setSearchList([]); // No pintes nada 
-        setFetchStatus(false);
+        setSearchList(searchList); // No pintes nada 
       }
     }
 
@@ -44,26 +62,20 @@ const ListaPokemon = ({searchItem}) => {
   }
 
   const paintPokelist = () => {
-    if (fetchStatus==true){
+
       return searchList.map((element, i) => (
         <Card
           key={uuidv4()}
           name={element.name.toUpperCase()}
           id={element.id}
-          peso={element.weight}
-          altura={element.heigth}
-          foto={element["sprites"]["other"]["official-artwork"]["front_default"]}
+          peso={element.weight/10}
+          altura={element.height*10}
+          foto={element.foto}
+          color={element.color}
+          descripcion={element.descripcion.replace(/(\n)/gm," ").replace(/(\f)/gm," ")}
           quitarPokemon={()=>quitarPokemon(i)}
         />
       ));
-    } else {
-      // return (
-      //   <ErrorMessage
-      //   />
-      // )
-     
-    } 
-    
   };
 
 

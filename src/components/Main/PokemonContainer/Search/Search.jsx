@@ -1,8 +1,13 @@
-import React,{useState} from "react";
+import React,{useState, useEffect} from "react";
+import { useDebounce } from 'use-debounce';
 
 const Search = ({updateSearchItem}) => {
   const[inputState, setInputState] = useState("");
-  
+  const [value] = useDebounce(inputState, 5000);
+
+  useEffect(() => {
+    enviar();
+  }, [value]);
 
   const handleChange = (e)=>{
     e.preventDefault();
@@ -19,7 +24,10 @@ const Search = ({updateSearchItem}) => {
   const enviar = () =>{
     updateSearchItem(inputState);
     handleReset();
+    
   };
+
+
 
   return(
     <>
