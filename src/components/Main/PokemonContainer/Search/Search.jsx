@@ -1,9 +1,24 @@
-import React,{useState, useEffect} from "react";
+import React,{useState, useEffect, useContext} from "react";
 import { useDebounce } from 'use-debounce';
+import { PokemonListContext } from "../../../../context/PokemonListContext";
 
 const Search = ({updateSearchItem}) => {
+  const { allPokemon} = useContext(PokemonListContext);
   const[inputState, setInputState] = useState("");
   const [value] = useDebounce(inputState, 5000);
+
+  console.log(allPokemon);
+
+  // const findInContext = (search) =>{
+  //   if (search.type == number){
+  //     enviar(search+1)
+  //   }; 
+
+  //   if (search.type == string ){
+  //     en
+  //   }
+  // }
+
 
   useEffect(() => {
     enviar();

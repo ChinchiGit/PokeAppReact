@@ -5,12 +5,13 @@ import Card from "./Card";
 
 
 
+
 // import ErrorMessage from './ErrorMessage/ErrorMessage';
 
 const ListaPokemon = ({searchItem}) => {
-
   const [searchList, setSearchList] = useState([]);
   // const [fetchStatus, setFetchStatus] = useState();
+
 
   
   
