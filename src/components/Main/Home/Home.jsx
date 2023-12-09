@@ -26,11 +26,11 @@ const Home = () => {
 
 
 
-  useEffect(() => {
-    console.log("mandando cosas a contexto")
-    updateAllPokemon(totalPokemon);
-    console.log(allPokemon)
-  }, [totalPokemon]);
+  // useEffect(() => {
+  //   console.log("mandando cosas a contexto")
+  //   updateAllPokemon(totalPokemon);
+  //   // console.log(allPokemon)
+  // }, [totalPokemon]);
   
  
 
