@@ -32,21 +32,18 @@ const Home = () => {
   //   // console.log(allPokemon)
   // }, [totalPokemon]);
   
- 
-
-
-  const paintAll= () => {
-
+  const paintAll = () => {
     return totalPokemon.map((element, i) => (
-      <>
-        <article>
-          <h3>#{i+1}</h3>
-          <h3>{element.name}</h3>
-        </article>
-      </>
-
+      <article key={i + 1}>
+        <h3>#{i + 1}</h3>
+        <h3>{element.name}</h3>
+      </article>
     ));
-};
+  };
+   
+
+
+
 
   return (
     <>

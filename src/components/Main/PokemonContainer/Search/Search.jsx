@@ -48,6 +48,8 @@ const Search = () => {
         foto:
           json.sprites.other["official-artwork"].front_default ||
           json.sprites.front_default, //posibles ubicaciones de la imagen
+        type1: json.types[0].type.name,
+        type2: json.types[1].type.name,
         color: json2.color.name,
         descripcion: json2.flavor_text_entries[0].flavor_text,
       };

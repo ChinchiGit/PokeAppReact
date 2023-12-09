@@ -1,68 +1,71 @@
 import React from "react";
-// import { useForm } from "react-hook-form"
+import { useForm, Controller } from "react-hook-form";
 
-// export default function App() {
-//   const { register, handleSubmit } = useForm()
-//   const onSubmit = (data) => console.log(data)
 
-// // const FormularioCrear = () => {
-//   return (
-//     <>
-//       <form onSubmit={handleSubmit(onSubmit)}>
-//           <input type="number" {...register("id", { required: true, min:1018, className:"htmlForm-control", id:"id" })}/>
-//           <input  {...register("name", { required: true, minLength:3, className:"htmlForm-control", id:"name" })}/>
-//           <input {...register("image", { required: true, className:"htmlForm-control", id:"image" })}/>
-//           <select {...register("typeOne", { required: true, className:"htmlForm-control", id:"typeOne", placeholder:"Selecciona" })}>
-//             <option value="normal">Normal</option>
-//             <option value="fire">Fuego</option>
-//             <option value="water">Agua</option>
-//             <option value="electric">Eléctrico</option>
-//             <option value="grass">Hierba</option>
-//             <option value="ice">Hielo</option>
-//             <option value="fighting">Lucha</option>
-//             <option value="poison">Veneno</option>
-//             <option value="ground">Tierra</option>
-//             <option value="flying">Volador</option>
-//             <option value="psychic">Psíquico</option>
-//             <option value="bug">Bicho</option>
-//             <option value="rock">Roca</option>
-//             <option value="ghost">Fantasma</option>
-//             <option value="dragon">Dragón</option>
-//             <option value="dark">Siniestro</option>
-//             <option value="steel">Acero</option>
-//             <option value="fairy">Hada</option>
-//           </select>
+const PokemonForm = ({ onSubmit }) => {
+  const { handleSubmit, control, register, setValue, formState: { errors } } = useForm();
 
-//           <select {...register("typeTwo", { required: true, className:"htmlForm-control", id:"typeTwo", placeholder:"Selecciona" })}>
-//             <option value="">Seleccionar</option>
-//             <option value="normal">Normal</option>
-//             <option value="fire">Fuego</option>
-//             <option value="water">Agua</option>
-//             <option value="electric">Eléctrico</option>
-//             <option value="grass">Hierba</option>
-//             <option value="ice">Hielo</option>
-//             <option value="fighting">Lucha</option>
-//             <option value="poison">Veneno</option>
-//             <option value="ground">Tierra</option>
-//             <option value="flying">Volador</option>
-//             <option value="psychic">Psíquico</option>
-//             <option value="bug">Bicho</option>
-//             <option value="rock">Roca</option>
-//             <option value="ghost">Fantasma</option>
-//             <option value="dragon">Dragón</option>
-//             <option value="dark">Siniestro</option>
-//             <option value="steel">Acero</option>
-//             <option value="fairy">Hada</option>
-//           </select>
+  const onSubmitHandler = (data) => {
+    onSubmit(data);
+  };
 
-//         <input type="submit"/>
-//       </form>
-
-//     </>
-//   )
-// };
-
-const FormularioCrear = () => {
-  return <div>Details</div>;
+  return (
+    <form onSubmit={handleSubmit(onSubmitHandler)}>
+      <TextField
+        label="ID"
+        {...register("id", { required: "ID is required" })}
+        error={Boolean(errors.id)}
+        helperText={errors.id?.message}
+      />
+      <TextField
+        label="Name"
+        {...register("name", { required: "Name is required", minLength: { value: 3, message: "Name should have at least 3 characters" } })}
+        error={Boolean(errors.name)}
+        helperText={errors.name?.message}
+      />
+      <TextField
+        label="Image"
+        {...register("image", { required: "Image is required" })}
+        error={Boolean(errors.image)}
+        helperText={errors.image?.message}
+      />
+      <Controller
+        render={({ field }) => (
+          <Select
+            label="Type One"
+            {...field}
+            error={Boolean(errors.typeOne)}
+            helperText={errors.typeOne?.message}
+          >
+            <MenuItem value="grass">Grass</MenuItem>
+            <MenuItem value="fire">Fire</MenuItem>
+            {/* Add more types as needed */}
+          </Select>
+        )}
+        control={control}
+        name="typeOne"
+        rules={{ required: "Type One is required" }}
+      />
+      <Controller
+        render={({ field }) => (
+          <Select
+            label="Type Two"
+            {...field}
+            error={Boolean(errors.typeTwo)}
+            helperText={errors.typeTwo?.message}
+          >
+            <MenuItem value="water">Water</MenuItem>
+            <MenuItem value="electric">Electric</MenuItem>
+            {/* Add more types as needed */}
+          </Select>
+        )}
+        control={control}
+        name="typeTwo"
+        rules={{ required: "Type Two is required" }}
+      />
+      <Button type="submit">Submit</Button>
+    </form>
+  );
 };
-export default FormularioCrear;
+
+export default PokemonForm;
