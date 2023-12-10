@@ -1,71 +1,132 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useForm, Controller } from "react-hook-form";
+import { PokemonListContext } from "../../../context/PokemonListContext";
 
+const PokemonForm = () => {
+  const { allPokemon, updateAllPokemon } = useContext(PokemonListContext);
+  const { control, register, handleSubmit } = useForm();
 
-const PokemonForm = ({ onSubmit }) => {
-  const { handleSubmit, control, register, setValue, formState: { errors } } = useForm();
-
-  const onSubmitHandler = (data) => {
-    onSubmit(data);
+  const onSubmit = (data) => {
+    updateAllPokemon([data, ...allPokemon]);
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmitHandler)}>
-      <TextField
-        label="ID"
-        {...register("id", { required: "ID is required" })}
-        error={Boolean(errors.id)}
-        helperText={errors.id?.message}
-      />
-      <TextField
-        label="Name"
-        {...register("name", { required: "Name is required", minLength: { value: 3, message: "Name should have at least 3 characters" } })}
-        error={Boolean(errors.name)}
-        helperText={errors.name?.message}
-      />
-      <TextField
-        label="Image"
-        {...register("image", { required: "Image is required" })}
-        error={Boolean(errors.image)}
-        helperText={errors.image?.message}
-      />
-      <Controller
-        render={({ field }) => (
-          <Select
-            label="Type One"
-            {...field}
-            error={Boolean(errors.typeOne)}
-            helperText={errors.typeOne?.message}
-          >
-            <MenuItem value="grass">Grass</MenuItem>
-            <MenuItem value="fire">Fire</MenuItem>
-            {/* Add more types as needed */}
-          </Select>
-        )}
-        control={control}
-        name="typeOne"
-        rules={{ required: "Type One is required" }}
-      />
-      <Controller
-        render={({ field }) => (
-          <Select
-            label="Type Two"
-            {...field}
-            error={Boolean(errors.typeTwo)}
-            helperText={errors.typeTwo?.message}
-          >
-            <MenuItem value="water">Water</MenuItem>
-            <MenuItem value="electric">Electric</MenuItem>
-            {/* Add more types as needed */}
-          </Select>
-        )}
-        control={control}
-        name="typeTwo"
-        rules={{ required: "Type Two is required" }}
-      />
-      <Button type="submit">Submit</Button>
-    </form>
+    <>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <label htmlFor="id">ID:</label>
+        {/* Controller maneja los inputs con react-hook-form para que no se mande el formulario si no se cumplen las condiciones de validacion en cada campo*/}
+        <Controller
+          name="id"
+          control={control}
+          defaultValue={1018}
+          render={({ field }) => (
+            <input
+              type="number"
+              {...field}
+              required
+              min={1018}
+              className="htmlForm-control"
+              id="id"
+            />
+          )}
+        />
+        <label htmlFor="name">Nombre:</label>
+        <Controller
+          name="name"
+          control={control}
+          defaultValue=""
+          render={({ field }) => (
+            <input
+              {...field}
+              type="text"
+              required
+              minLength={3}
+              className="htmlForm-control"
+              id="name"
+            />
+          )}
+        />
+        <label htmlFor="foto">URL Foto:</label>
+        <Controller
+          name="foto"
+          control={control}
+          defaultValue=""
+          render={({ field }) => (
+            <input
+              {...field}
+              type="text"
+              required
+              className="htmlForm-control"
+              id="image"
+            />
+          )}
+        />
+        <label htmlFor="type1">Tipo 1:</label>
+        <Controller
+          name="type1"
+          control={control}
+          defaultValue=""
+          render={({ field }) => (
+            <select
+              {...field}
+              required
+              className="htmlForm-control"
+              id="typeOne"
+            >
+              <option value="electric">Eléctrico</option>
+              <option value="grass">Hierba</option>
+              <option value="ice">Hielo</option>
+              <option value="fighting">Lucha</option>
+              <option value="poison">Veneno</option>
+              <option value="ground">Tierra</option>
+              <option value="flying">Volador</option>
+              <option value="psychic">Psíquico</option>
+              <option value="bug">Bicho</option>
+              <option value="rock">Roca</option>
+              <option value="ghost">Fantasma</option>
+              <option value="dragon">Dragón</option>
+              <option value="dark">Siniestro</option>
+              <option value="steel">Acero</option>
+              <option value="fairy">Hada</option>
+            </select>
+          )}
+        />
+        <label htmlFor="type2">Tipo 2:</label>
+        <Controller
+          name="type2"
+          control={control}
+          defaultValue=""
+          render={({ field }) => (
+            <select
+              {...field}
+              required
+              className="htmlForm-control"
+              id="typeTwo"
+            >
+              <option value="electric">Eléctrico</option>
+              <option value="grass">Hierba</option>
+              <option value="ice">Hielo</option>
+              <option value="fighting">Lucha</option>
+              <option value="poison">Veneno</option>
+              <option value="ground">Tierra</option>
+              <option value="flying">Volador</option>
+              <option value="psychic">Psíquico</option>
+              <option value="bug">Bicho</option>
+              <option value="rock">Roca</option>
+              <option value="ghost">Fantasma</option>
+              <option value="dragon">Dragón</option>
+              <option value="dark">Siniestro</option>
+              <option value="steel">Acero</option>
+              <option value="fairy">Hada</option>
+            </select>
+          )}
+        />
+
+        <input type="submit" value="Submit" />
+      </form>
+    </>
   );
 };
 
 export default PokemonForm;
+

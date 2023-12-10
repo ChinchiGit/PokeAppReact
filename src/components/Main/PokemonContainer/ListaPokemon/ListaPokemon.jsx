@@ -1,8 +1,7 @@
-import React, {useState, useEffect, useContext} from "react";
+import React, {useContext} from "react";
 import Card from "./Card";
 import { PokemonListContext } from "../../../../context/PokemonListContext";
 
-import { useQueryParams, StringParam } from "query-parameters";
 
 const ListaPokemon = () => {
   //Cotexto
@@ -28,18 +27,20 @@ const ListaPokemon = () => {
   const paintPokelist = () => {
     return allPokemon.map((element, i) => (
   
-    //  Pasar al elemento card por params los datos necesarios   
+    //  Pasar al elemento card por params los datos necesarios
+    //  El formulario para crear nuevos pokemon tiene menos campos segun las instrucciones del ejercicio. Se establece "desconocido" como alternativa para las propiedades que el usuariono puede facilitar.   
       <>
         <Card
+          key={element.id}
           name={element.name.toUpperCase()}
           id={element.id}
-          peso={element.weight / 10}
-          altura={element.height * 10}
+          peso={element.weight?  element.weight/ 10: "desconocido"}
+          altura={element.height? element.height * 10: "desconocido"}
           foto={element.foto}
-          color={element.color}
+          color={element.color? element.color: "aquamarine" }
           type1={element.type1}
           type2={element.type2}
-          descripcion={element.descripcion.replace(/(\n)/gm, " ").replace(/(\f)/gm, " ")}
+          descripcion={element.descripcion? element.descripcion.replace(/(\n)/gm, " ").replace(/(\f)/gm, " "): "desconocido"}
           quitarPokemon={() => quitarPokemon(i)}
         />
       </> 
