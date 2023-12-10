@@ -4,13 +4,14 @@ import { useDebounce } from "use-debounce";
 import { PokemonListContext } from "../../../../context/PokemonListContext";
 
 const Search = () => {
-  const { allPokemon, updateAllPokemon } = useContext(PokemonListContext);
-  const [inputState, setInputState] = useState("");
-  const [debouncedValue] = useDebounce(inputState, 3000); 
+  
+  const { allPokemon, updateAllPokemon } = useContext(PokemonListContext); //contexto
+  const [inputState, setInputState] = useState(""); //Estado formulario
+  const [debouncedValue] = useDebounce(inputState, 3000);  
 
 
   
-  //cuando se cumple el tiempo de Debounce manda el contenido del inputState al fetch
+  //cuando se cumple el tiempo de Debounce manda el contenido del inputState (formulario) al fetch
   useEffect(() => {
     if (debouncedValue) {
       fetchData();
@@ -22,7 +23,7 @@ const Search = () => {
     setInputState(e.target.value);
   };
 
-  //vacia inputState
+  //vacia inputState, se llama al finalizar el fetch
   const handleReset = () => {
     setInputState("");
   };
@@ -30,7 +31,7 @@ const Search = () => {
   //Hace Fecth a PokeApi con lo que ha introducido el usuario
   const fetchData = async () => {
     try {
-      // Petición HTTP
+      // Peticiones HTTP. Se hacen a dos endpoint diferentes y cada uno proporciona datos distintos.
       const res = await axios.get(`https://pokeapi.co/api/v2/pokemon/${inputState}`);
       const json = res.data;
 
@@ -49,7 +50,7 @@ const Search = () => {
           json.sprites.other["official-artwork"].front_default ||
           json.sprites.front_default, //posibles ubicaciones de la imagen
         type1: json.types[0].type.name,
-        type2: json.types[1].type.name,
+        type2: json.types.length ==1? "Desconocido": json.types[1].type.name,//Algunos pokemon solo ofrecen informacion para type 1
         color: json2.color.name,
         descripcion: json2.flavor_text_entries[0].flavor_text,
       };

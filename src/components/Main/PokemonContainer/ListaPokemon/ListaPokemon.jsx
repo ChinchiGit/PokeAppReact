@@ -1,20 +1,20 @@
 import React, {useState, useEffect, useContext} from "react";
-import axios from 'axios';
-import { v4 as uuidv4 } from "uuid";
 import Card from "./Card";
 import { PokemonListContext } from "../../../../context/PokemonListContext";
-import { Link } from "react-router-dom";
+
 import { useQueryParams, StringParam } from "query-parameters";
 
 const ListaPokemon = () => {
-  //Cotext
+  //Cotexto
   const { allPokemon, updateAllPokemon} = useContext(PokemonListContext);
 
+  //Eliminar un Pokemon de la lista quitandolo rel array contexto
   const quitarPokemon= (i) =>{
     const pokemonRestantes = allPokemon.filter((pokemon, j) => i!==j);
     updateAllPokemon(pokemonRestantes);
   }
 
+  //Vaciar por completo la lista de Pokemons y el array de contexto
   const limpiarLista = ()=>{
     const confirmated = confirm(`¿Deseas vaciar tu Pokedex?`);
 
@@ -24,15 +24,12 @@ const ListaPokemon = () => {
 
   }
 
+  //Pintar los Pokemon que contiene el estado que vive en App y llegan por contexto
   const paintPokelist = () => {
     return allPokemon.map((element, i) => (
-      <Link
-        key={element.id}
-        to={{
-          pathname: `/pokemon/${element.id}`,
-          search: `name=${element.name}&image=${element.foto}&typeOne=${element.color}`
-        }}
-      >
+  
+    //  Pasar al elemento card por params los datos necesarios   
+      <>
         <Card
           name={element.name.toUpperCase()}
           id={element.id}
@@ -45,7 +42,7 @@ const ListaPokemon = () => {
           descripcion={element.descripcion.replace(/(\n)/gm, " ").replace(/(\f)/gm, " ")}
           quitarPokemon={() => quitarPokemon(i)}
         />
-      </Link>
+      </> 
     ));
   };
 

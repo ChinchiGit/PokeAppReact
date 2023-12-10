@@ -1,23 +1,26 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
-const Card = ({name,id,peso,altura,foto,color, type1, type2, descripcion, quitarPokemon}) => {
+const Card = ({ name, id, peso, altura, foto, color, type1, type2, descripcion, quitarPokemon }) => {
 
-  return(
+  return (
     <>
-      <article style={{backgroundColor:`${color}`}}>
+      <article key={id} style={{ backgroundColor: `${color}` }}>
         <div>
           <p>#{id}</p>
           <img src={foto} alt={name} />
         </div>
         <div>
-          <h3>{name}</h3>
-          <p>{descripcion}</p>
-          <div>
-            <p>Peso: {peso} kg.</p>
-            <p>Altura: {altura} cm.</p>
-            <p>Tipo 1: {type1}</p>
-            <p>Tipo 2: {type2}</p>
-          </div>
+        {/* Enlace a vista detalle y construccion de la query */}
+          <Link
+            key={id}
+            to={{
+              pathname: `/pokemon/${id}`,
+              search: `name=${name}&id=${id}}&peso=${peso}&altura=${altura}&foto=${foto}&color=${color}&type1=${type1}&type2=${type2}&descripcion=${descripcion}`
+            }}
+          >
+            <h3>{name}</h3>
+          </Link>
         </div>
         <button onClick={quitarPokemon}>Eliminar</button>
       </article>

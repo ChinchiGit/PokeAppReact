@@ -1,21 +1,20 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useEffect, useState} from "react";
 import axios from "axios";
-import { PokemonListContext } from "../../../context/PokemonListContext";
 
 
 const Home = () => {
-  const { allPokemon, updateAllPokemon} = useContext(PokemonListContext);
   const[totalPokemon, setTotalPokemon] = useState([]);
   
+  //Fetch para obtener todos los pokemon y mostrar un listado. Se hace una sola vez ([]).  
   useEffect(() => {
     async function getAll() {
       try{
-        // Petición HTTP
         const resHome = await axios.get(`https://pokeapi.co/api/v2/pokemon?limit=1017`)
         const jsonHome = await resHome.data.results
         setTotalPokemon(jsonHome);
         
       }catch(e){
+        console.error("Error en la petición de datos:", e)
         setTotalPokemon(totalPokemon);
       }
     }
@@ -25,12 +24,6 @@ const Home = () => {
   }, []);
 
 
-
-  // useEffect(() => {
-  //   console.log("mandando cosas a contexto")
-  //   updateAllPokemon(totalPokemon);
-  //   // console.log(allPokemon)
-  // }, [totalPokemon]);
   
   const paintAll = () => {
     return totalPokemon.map((element, i) => (

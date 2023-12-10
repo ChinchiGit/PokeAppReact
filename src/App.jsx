@@ -8,8 +8,10 @@ import { PokemonListContext } from './context/PokemonListContext';
 
 
 function App() {
+  //Estado que se comparte por contexto con todos los componentes
   const [allPokemon, setAllPokemon] = useState([]);
 
+  //Funcion para modificar el anterior estado. Se comparte por ontexto.
   const updateAllPokemon = (newPokemon) => {
     setAllPokemon(newPokemon);
   };
