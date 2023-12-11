@@ -6,7 +6,7 @@ const Header = () => {
     <header>
       <section id="banner">
         <img id="pokeball" src="./assets/images/pokeball.gif" alt="pokeball" />
-        <img id="pokedex" src="./assets/images/pokemon_react.png" alt="pokeball" />
+        <img id="pokedex" src="./assets/images/pokemon_react.png" alt="pokedex react" />
       </section>
       <Nav/>
     </header>

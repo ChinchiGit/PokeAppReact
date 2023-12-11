@@ -22,3 +22,17 @@
 #botonLimpiarLista{
     margin-bottom: 15px;
 }
+
+#popup-content-box{
+    position:fixed;
+    background-color: whitesmoke;
+    color: $miBlack;
+    border: 10px;
+    border-radius: 15px;
+    left: 50%;
+    top: 50%;
+    -ms-transform: translate(-50%,-50%);
+    -moz-transform:translate(-50%,-50%);
+    -webkit-transform: translate(-50%,-50%);
+     transform: translate(-50%,-50%);
+  }

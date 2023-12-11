@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import Card from "./Card";
 import { PokemonListContext } from "../../../../context/PokemonListContext";
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -17,8 +17,17 @@ import { FreeMode, Pagination } from 'swiper/modules';
 const ListaPokemon = () => {
   //Cotexto
   const { allPokemon, updateAllPokemon } = useContext(PokemonListContext);
+  const [mostrarPopUp, setMostrarPopUp] = useState(false) //popup inicio
 
-  //Eliminar un Pokemon de la lista quitandolo rel array contexto
+
+  useEffect(() => {
+    if (allPokemon.length==0) {
+      setMostrarPopUp(true)
+      setInterval(() => {setMostrarPopUp(false)}, 4000);
+    }
+  }, []);
+
+  //Eliminar un Pokemon de la lista quitandolo del array contexto
   const quitarPokemon = (i) => {
     const pokemonRestantes = allPokemon.filter((pokemon, j) => i !== j);
     updateAllPokemon(pokemonRestantes);
@@ -63,6 +72,7 @@ const ListaPokemon = () => {
 
   return (
     <>
+      {mostrarPopUp && <section id="popup-content-box"><h4>Tu Pokedex está vacía. Haz una búskeda y caza un Pokemon.</h4></section>}
       <section className="listaPokemon">
         <Swiper
           slidesPerView={3}
