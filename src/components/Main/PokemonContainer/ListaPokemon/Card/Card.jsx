@@ -5,8 +5,8 @@ const Card = ({ name, id, peso, altura, foto, color, type1, type2, descripcion, 
 
   return (
     <>
-      <article key={id} style={{ backgroundColor: `${color}` }}>
-        <div>
+      <article key={id} className="card" style={{ backgroundColor: `${color}` }}>
+        <div id="fotoContainer">
           <p>#{id}</p>
           <img src={foto} alt={name} />
         </div>

@@ -1,18 +1,23 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { PokemonListContext } from "../../../context/PokemonListContext";
+import { Link } from 'react-router-dom';
 
 const PokemonForm = () => {
   const { allPokemon, updateAllPokemon } = useContext(PokemonListContext);
   const { control, register, handleSubmit } = useForm();
+  const [creado, setCreado] = useState(false); //mensaje de pokemon creado
 
   const onSubmit = (data) => {
     updateAllPokemon([data, ...allPokemon]);
+    setCreado(true);
   };
 
   return (
     <>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <h4>¡Crea un nuevo Pokemon!</h4>
+      <p>Introduce sus datos</p>
+      <form className="crearNuevo" onSubmit={handleSubmit(onSubmit)}>
         <label htmlFor="id">ID:</label>
         {/* Controller maneja los inputs con react-hook-form para que no se mande el formulario si no se cumplen las condiciones de validacion en cada campo*/}
         <Controller
@@ -122,8 +127,13 @@ const PokemonForm = () => {
           )}
         />
 
-        <input type="submit" value="Submit" />
+        <input type="submit" value="Enviar" />
       </form>
+      {creado &&
+      <section>
+        <p>Pokemon creado con éxito. Puedes verlo en tu Pokedex.</p>
+        <button><Link  to='/search'>VER POKEDEX</Link></button>
+      </section>}
     </>
   );
 };

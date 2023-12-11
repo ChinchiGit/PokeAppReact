@@ -1,0 +1,32 @@
+@import '../utils/variables.scss';
+@import '../utils/mixins.scss';
+
+header{
+    background-color: $darkBlue;
+    margin: auto;
+    width:auto;
+}
+
+#banner{
+    min-width: 280px;
+    padding:20px;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin:auto;
+}
+
+#pokeball{
+    max-height: 50px;
+    background-color: $white;
+    border-radius: 100%;
+}
+
+#pokedex{
+    max-width:60%;
+}
+
+
+

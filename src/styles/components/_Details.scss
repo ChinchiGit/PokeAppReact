@@ -1,0 +1,38 @@
+@import '../utils/variables.scss';
+@import '../utils/mixins.scss';
+
+.details{
+    width:85%;
+    margin:auto;
+    border-radius: 20px;
+    color: $miBlack;
+    padding-top: 10px;
+    padding-bottom: 20px;
+    img{
+        max-height: 220px;
+    }
+
+}
+
+#fotoDetails{
+    margin:auto;
+    width: 180px;
+    border-style: solid;
+    border-width: 3px;
+    background-color: rgba(255, 228, 196, 0.7);
+    border-radius: 100%;
+    margin-bottom: 10px;
+}
+
+#datosDetails{
+    text-align: left;
+    margin:auto;
+    
+    width: 80%;
+    background-color: $white;
+    border-radius: 20px;
+    padding: 10px;
+    p{
+        margin-left: 15px;
+    }
+}

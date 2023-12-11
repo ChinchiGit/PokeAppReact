@@ -21,18 +21,18 @@ const Details = () => {
       <section>
         <h2>Detalles de {name.toUpperCase()} </h2>
       </section>
-      <section style={{backgroundColor:`${color}`}}>
-        <article>
-          <p>#{id}</p>
+      <section className="details" style={{backgroundColor:`${color}`}}>
+        <article id="fotoDetails">
           <img src={foto} alt="" />
         </article>
-        <p>Nombre: {name}</p>
-        <p>Peso: {peso} kg.</p>
-        <p>Altura: {altura} cm.</p>
-        <p>Tipo 1: {type1}</p>
-        <p>Tipo 2: {type2}</p>
-        <p>Descripcion: {descripcion}</p>
-        {/* Agrega más detalles según tus necesidades */}
+        <article id="datosDetails">
+          <p><b>Nombre:</b> {name} (id: #{id})</p>
+          <p><b>Peso: </b> {peso} kg.</p>
+          <p><b>Altura:</b> {altura} cm.</p>
+          <p><b>Tipo 1:</b> {type1}</p>
+          <p><b>Tipo 2:</b> {type2}</p>
+          <p><b>Descripcion:</b> {descripcion}</p>
+        </article>
       </section>
     </>
   );

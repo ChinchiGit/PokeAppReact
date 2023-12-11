@@ -1,0 +1,22 @@
+@import '../utils/variables.scss';
+@import '../utils/mixins.scss';
+
+footer{
+    background-color: $miYellow;
+    display: column;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-right: 10px;
+    padding-left: 10px;
+    width: 100%;
+    margin-top: 10px;
+    position: fixed;
+    bottom: 0; 
+    img{
+        margin-top: 3px;
+        max-width: 70px;
+    }
+    p{
+        margin-top: 3px;
+    }
+  }

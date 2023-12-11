@@ -1,0 +1,22 @@
+@import '../utils/variables.scss';
+@import '../utils/mixins.scss';
+
+.crearNuevo{
+    background-color: $miRed;
+    width: 90%;
+    margin: auto;
+    border-radius: 15px;
+    padding:10px;
+    margin-top:20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    h4{
+        margin-top: 0px;
+    }
+    input, select{
+        margin-bottom: 10px;
+    }
+
+    
+}

@@ -66,10 +66,13 @@ const Search = () => {
 
   return (
     <>
-      <input type="text" value={inputState} onChange={handleChange} />
-      <button onClick={fetchData} disabled={!inputState}>
-        BUSCAR
-      </button>
+      <section className="search">
+        <h4>Busca a tu pokemon:</h4>
+        <input type="text" value={inputState} onChange={handleChange} placeholder="pikachu"/>
+        <button onClick={fetchData} disabled={!inputState}>
+          BUSCAR
+        </button>
+      </section>
 
     </>
   );

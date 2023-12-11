@@ -1,0 +1,12 @@
+@import '../utils/variables.scss';
+
+
+#root {
+    background-color: $darkBlue;
+    text-align: center;
+    margin:0px;
+    min-height: 100vh;
+    font-family: $font;
+    font-family: var(--font-poppins);
+}
+

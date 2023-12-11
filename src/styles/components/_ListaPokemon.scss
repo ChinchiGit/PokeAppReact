@@ -1,0 +1,24 @@
+@import '../utils/variables.scss';
+@import '../utils/mixins.scss';
+
+.listaPokemon{
+    background-color: $miBlue;
+    color: $miBlack;
+    a:link, a:visited, a:active {
+        text-decoration:none;
+        color: $miBlack;
+    }
+    a:hover{
+        color: $miYellow;
+    }
+}
+
+.mySwiper{
+    margin-top: 20px;
+    min-height: 400px;
+    padding: 5%;
+}
+
+#botonLimpiarLista{
+    margin-bottom: 15px;
+}

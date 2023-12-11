@@ -1,9 +1,13 @@
 import React, { useEffect, useState} from "react";
 import axios from "axios";
+import { Swiper, SwiperSlide } from 'swiper/react';
 
 
 const Home = () => {
   const[totalPokemon, setTotalPokemon] = useState([]);
+  
+
+
   
   //Fetch para obtener todos los pokemon y mostrar un listado. Se hace una sola vez ([]).  
   useEffect(() => {
@@ -27,9 +31,13 @@ const Home = () => {
   
   const paintAll = () => {
     return totalPokemon.map((element, i) => (
-      <article key={i + 1}>
-        <h3>#{i + 1}</h3>
-        <h3>{element.name}</h3>
+      <article key={i + 1} className="pokemonIdName">
+        <div id= "pokemonId">
+          <h3 >#{i + 1}</h3>
+        </div>
+        <div id="pokemonName" >
+          <h3>{element.name}</h3>
+        </div>
       </article>
     ));
   };
@@ -42,13 +50,17 @@ const Home = () => {
     <>
       <section>
         <h1>Bienvenido al mundo Pokemon</h1>
+        <p>¡Mira todos los que podrás cazar!</p>
       </section>
-      <section>
+      <section id="totalPokemonContainer">
         {paintAll()}
       </section>
+      <span></span>
 
     </>
-  )
-};
+  );
+}
+
+
 
 export default Home;
