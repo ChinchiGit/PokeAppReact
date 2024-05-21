@@ -1,8 +1,17 @@
-# React + Vite
+# PokeAppReact
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+PokeAppReact es un proyecto desarrollado como un ejercicio práctico de React. Este proyecto tiene como objetivo principal ayudar a comprender y manejar el ciclo de vida de los componentes, el contexto y los hooks en React. Se trata de un buscador de Pokémon alimentado por la PokeAPI.
 
-Currently, two official plugins are available:
+## Características
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Búsqueda de Pokémon:** Permite buscar Pokémon por nombre o ID utilizando la PokeAPI.
+- **Visualización de detalles:** Muestra detalles de los Pokémon, incluyendo su nombre, imagen, tipos y estadísticas.
+- **Gestión de estado con Hooks:** Utiliza hooks de React como `useState` y `useEffect` para la gestión del estado y los efectos secundarios.
+- **Contexto de React:** Implementa el contexto de React (`React.Context`) para compartir datos entre componentes sin necesidad de pasar props manualmente a través de cada nivel de la aplicación.
+
+## Despliegue
+El proyecto está desplegado en Netlify y es accesible en el siguiente enlace:
+
+[PokeAppReact](https://mipokedexconreact.netlify.app/)
+
+
